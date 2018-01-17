@@ -1,0 +1,45 @@
+---
+title: "Beobachtungen aus der Routine ZWS"
+subtitle: "Der Weg zu QS und Automatisierung"
+author: "Peter von Rohr"
+date: "`r Sys.Date()`"
+output:
+  tufte::tufte_html: default
+  tufte::tufte_handout:
+    citation_package: natbib
+    latex_engine: xelatex
+  tufte::tufte_book:
+    citation_package: natbib
+    latex_engine: xelatex
+bibliography: skeleton.bib
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+library(tufte)
+# invalidate cache when the tufte version changes
+knitr::opts_chunk$set(tidy = FALSE, cache.extra = packageVersion('tufte'))
+options(htmltools.dir.version = FALSE)
+```
+
+# Einleitung
+Dieses Dokument ist eine Sammlung von Beobachtungen, welche im Zuge der Routine-Zuchtwertschätzung (ZWS) gemacht werden und welche in irgend einer Hinsicht für die Qualitätssicherung und die Automatisierung des gesamten ZWS-Prozess relevant sein könnten. Die Lehren und die Schlussfolgerungen der hier beschriebenen Beobachtungen werden in das QA- und Automatisierungsprojekt einfliessen.
+
+
+# Allgemeine Punkte
+Die Verwendung des Begriffs `Routine` impliziert schon, dass alle in diesem Prozess vollzogenen Einzelschritte in periodischem Abstand wiederholt werden. Diese Feststellung ist deshalb wichtig, da oft die Frage gestellt wird, ob es sich lohnt manuell ausgeführte Einzelschritte zu automatisieren. Bei diesen Überlegungen ist es wichtig zu bedenken, dass nicht nur pure Effizienzkriterien in diese Betrachtung einbezogen werden, sondern dass auch die Aspekte der Qualitätssicherung berücksichtigt werden. Ein wichtiger Punkt in der Qualitätssicherung von Datenanalysen ist deren Reproduzierbarkeit^[Gemäss [Wikipedia](https://en.wikipedia.org/wiki/Reproducibility) versteht man unter `Reproduzierbarkeit` die Möglichkeit, dass eine unabhängige Person aufgrund der Rohdaten und der verwendeten Software die gleichen Resultate aus einer Analyse bekommen kann]. 
+
+# Spezifische Beobachtungen
+In diesem Abschnitt werden die einzelnen Beobachtungen aufgelistet.
+
+## Trächtigkeitsdauer bei VMS
+
+
+```{r biblio, include=FALSE}
+sbibtex_file <- "skeleton.bib"
+cat("%%% % Automatically generated bibtex file\n", file = sbibtex_file)
+bref <- NULL
+if (!is.null(bref))
+  cat(paste0(toBibtex(bref), collapse = "\n"), file = sbibtex_file, append = TRUE)
+```
+
