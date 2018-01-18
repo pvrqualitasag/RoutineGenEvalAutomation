@@ -33,13 +33,17 @@ Die Verwendung des Begriffs `Routine` impliziert schon, dass alle in diesem Proz
 In diesem Abschnitt werden die einzelnen Beobachtungen aufgelistet.
 
 ## Trächtigkeitsdauer bei VMS
+Traditionelle Zuchtwerte für Trächtigkeitsdauer bei VMS kommen aus einem Mehrmerkmals-Vatermodell. Geburtsablauf und Geburtsgewicht werden in den Nutzungsrichtungen Milch (dairy) und Fleisch (beef) als unterschiedliche Merkmale behandelt. Einzelne genetische Korrelationen haben einen sehr hohen ($>0.9$) Absolutwert. Das Modell hat neben den zufälligen Vatereffekten, welche als Zuchtwerte verwendet werden auch fixe Effekte aufgrund von Rassenkombinationen. Zwischen den Auswertungen August 2017 und Februar 2018 haben sich die Zuchtwerte von LI- und CH-Stieren um einen konstanten Betrag verschoben. Gleichzeitig haben sich die Lösungen für die fixen Rasseneffekte um den gleichen Betrag verschoben. Dies deutet darauf hin, dass die Zuchtwerte und die fixen Rasseneffekte nicht sauber voneinander getrennt werden können. Offenbar ist das Gleichungssystem nicht stabil und es können keine konsistenten Lösungen berechnet werden.
+
+Als Folgerung ist neben der Überprüfung der geschätzten Zuchtwerte zwischen zwei Auswertungen auch der Vergleich der Lösungen für die fixen Effekte zu machen. 
 
 
 ```{r biblio, include=FALSE}
-sbibtex_file <- "skeleton.bib"
-cat("%%% % Automatically generated bibtex file\n", file = sbibtex_file)
+#sbibtex_file <- "skeleton.bib"
+# cat("%%% % Automatically generated bibtex file\n", file = sbibtex_file)
 bref <- NULL
-if (!is.null(bref))
-  cat(paste0(toBibtex(bref), collapse = "\n"), file = sbibtex_file, append = TRUE)
+# if (!is.null(bref))
+#   cat(paste0(toBibtex(bref), collapse = "\n"), file = sbibtex_file, append = TRUE)
+rmddochelper::write_bib(pvec_bref = bref)
 ```
 
