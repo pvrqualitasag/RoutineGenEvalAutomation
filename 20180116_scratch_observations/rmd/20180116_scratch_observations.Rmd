@@ -38,6 +38,14 @@ Traditionelle Zuchtwerte für Trächtigkeitsdauer bei VMS kommen aus einem Mehrm
 Als Folgerung ist neben der Überprüfung der geschätzten Zuchtwerte zwischen zwei Auswertungen auch der Vergleich der Lösungen für die fixen Effekte zu machen. 
 
 
+## Entwicklung ZWS für Fettabdeckung bei VMS
+Geschätzte Zuchtwerte bei Fleischmerkmalen bei VMS basieren zu einem Teil auf Daten der TVD. Da viele der Tiere aus der TVD nicht auf ARGUS sind, wird die TVD-Tiere ein Pedigree erstellt, welches mit dem RRTDM-Pedigree aus ARGUS gemerged wird. Beim Merge erhalten die Informationen ab ARGUS absolute Priorität. In der ursprünglichen Variante wurde die Rasseninformation ab der TVD mit in den Datensatz übernommen. Für gewisse Rassen, wie z. Bsp. LI handelt es sich dabei um recht viele Datenrecords.
+
+Bei der Rasse LI wurden problematische ^[bi-modale und schiefe Verteilung der geschätzten Roh-Zuchtwerte] Resultate festgestellt. Die visuelle Inspektion lässt auf eine Mischung von zwei heterogenen Populationen schliessen.
+
+Als erster Lösungsversuch wurde versucht die Rasseninformation der TVD-Tiere zu ignorieren. Somit erhielten alle TVD-Tiere den Missing-Value-Code als Rasse. Eine erste Überprüfung der neuen ZWS-Resultate hat ergeben, dass sich dadurch das Problem mit der Verteilung der ZW entschärfen liess. Argumentativ kann diese Vorgehen dadurch begründet werden, dass die TVD einen anderen Rassenbegriff hat als ARGUS.
+
+
 ```{r biblio, include=FALSE}
 #sbibtex_file <- "skeleton.bib"
 # cat("%%% % Automatically generated bibtex file\n", file = sbibtex_file)
