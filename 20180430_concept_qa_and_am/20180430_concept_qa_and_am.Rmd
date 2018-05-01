@@ -34,7 +34,7 @@ This document gives an outline of some concepts proposed in the area of quality 
 # Introduction
 According to R for Data Science [@WG2017], the following model of a data science project can be proposed. 
 
-```{r DsProjectModel,echo=FALSE, odg.conv=TRUE, odg.path="odg", odg.out.dir="png", odg.graph.cache=TRUE, fig.cap="Data Science Project Model"}
+```{r DsProjectModel,echo=FALSE, odg.conv=TRUE, odg.path="odg", odg.out.dir="png", odg.graph.cache=TRUE, fig.cap="Data Science Project Model", fig.margin=TRUE}
 knitr::include_graphics(path = "png/DsProjectModel.png")
 ```
 
@@ -59,20 +59,34 @@ In the context of the proposed concepts, the term _routine_ is defined as a data
 ## Preparatory Study
 Before, we can start a new data analysis that is planned to be done according to a routine schedule, we have to conduct a preparatory study that investigates a certain number of research questions. Such a preparatory study can be done according to the above given Data Science Project Model. The results of this preparatory study are not only the outcomes of the statistical analyses, but we also save the whole process of how we proceed from the input of the raw data to the statistical results. This process is defined as path between the different data science model components and it will be used in the routine data analysis. 
 
-An example of finding such a routine process is shown below.
+An example of finding such a routine process is shown below (see Figure \ref{fig:find_routine_process}).
 
-```{r find_routine_process, echo=FALSE}
-s_graphics_file = "odg/find_routine_process.odg"
+```{r find_routine_process, echo=FALSE, fig.cap="\\label{fig:find_routine_process}Create Routine Analysis From Results Of Preparatory Study", fig.height=3}
+s_graphics_file <- "odg/find_routine_process.odg"
 if (!file.exists(s_graphics_file)){
   rmddochelper:::odg_draft(file = s_graphics_file, package = "rmddochelper")
 }
-
-con_graphics_file <- file(s_graphics_file)
-open(con_graphics_file)
-
-close(con = con_graphics_file)
+s_include_file <- gsub("odg", "png", s_graphics_file, fixed = TRUE)
+knitr::include_graphics(path = s_include_file)
 ```
 
+
+## Routine Design
+The above shown result from the preparatory study can now be applied in a given routine schedule plan. The repetition of the routine data analysis over time with data that increases over time leads to the final process of a routine data analysis process. This final process is shown below.
+
+```{r design_routine, echo=FALSE, fig.cap="\\label{fig:design_routine}Routine Data Analysis Process", fig.height=3}
+s_design_routine_graphics_file <- "odg/design_routine.odg"
+if (!file.exists(s_design_routine_graphics_file)){
+  rmddochelper:::odg_draft(file = s_design_routine_graphics_file, package = "rmddochelper")
+  system(paste(rmddochelper::get_odg_prog_path(), s_design_routine_graphics_file))
+}
+s_design_routine_include_file <- gsub("odg", "png", s_design_routine_graphics_file, fixed = TRUE)
+knitr::include_graphics(path = s_design_routine_include_file)
+```
+
+
+## Measures of Quality Assurance (QA)
+The whole process shown in Figrue \ref{fig:design_routine} is completely software-driven. Hence questions related to QA of the whole process do also relate to issues of QA in software-design. 
 
 
 ```{r bib, include=FALSE}
