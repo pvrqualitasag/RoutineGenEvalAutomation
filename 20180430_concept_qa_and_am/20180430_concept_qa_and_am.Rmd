@@ -85,7 +85,22 @@ knitr::include_graphics(path = s_design_routine_include_file)
 ```
 
 
-## Measures of Quality Assurance (QA)
+# Concept of Quality Assurance (QA) in a Data Analysis
+The most important criterion of a data analysis which decides whether any statement about the quality of a data analysis can be made is __reproducibility__^[The term 'reprducibility' is to be understood in the context of a data analysis.]. It has to be emphasized that reproducibility alone does not guarantee a high level of quality of any data analysis. But without reproducibility, the quality of a data analysis  is impossible or at best very difficult to assess. 
+
+
+## Definition of Reproducibility
+A data analysis is _reproducible_ if a data analyst which is not the same person the one who has done the data analysis in the first place, can reproduce the results of the analysis with the same input data and the same programs as the analysis was done by the original data analyst. 
+
+
+## How to ensure reproducibility
+Nowadays any data analysis is done with a statistical computing system. These systems can be used interactively where the user enters commands or navigates in a GUI-based^[where GUI stands for Graphical User Interface] menu. Data analyses which are done in such an interactive mode cannot be made reproducible or are difficult to make reproducible. We shall see later a weaker form of reproducibility which can be postulated for such analyses.
+
+Most statistical computing systmes can also be run with scripts or programs where sequences of statements are collected in a file^[which are called the script or the program] and these statements can then be run against the statistical computing system. The results produced by the data-analysis program must then be collected in a new result-file from which it is clear what the name of the program is and when the program was run to produce the given results^[more detailed information such as the version of the statistical computing system, any additional software needed, the operating system and the name of the machine can be helpful and are therefore desirable to be included in a result file]. 
+
+
+
+## Measures of Quality Assurance
 The whole process shown in Figrue \ref{fig:design_routine} is completely software-driven. Hence questions related to QA of the whole process do also relate to issues of QA in software-design. 
 
 
