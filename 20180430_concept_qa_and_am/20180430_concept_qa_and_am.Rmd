@@ -4,10 +4,10 @@ subtitle: "Quality Assurance and Automation"
 author: "Peter von Rohr"
 date: "`r Sys.Date()`"
 output:
+  tufte::tufte_html: default
   tufte::tufte_handout:
     citation_package: natbib
     latex_engine: xelatex
-  tufte::tufte_html: default
   tufte::tufte_book:
     citation_package: natbib
     latex_engine: xelatex
@@ -85,8 +85,24 @@ knitr::include_graphics(path = s_design_routine_include_file)
 ```
 
 
-## Measures of Quality Assurance (QA)
-The whole process shown in Figrue \ref{fig:design_routine} is completely software-driven. Hence questions related to QA of the whole process do also relate to issues of QA in software-design. 
+# Quality Assurance (QA) in Data Science (DS)
+Data science has become a buzzword 
+
+The really essential concept that allows for any measures of quality assurance (QA) is __reproducibility__. At the same time, it has to be emphasized that reproducibility alone does not get us anything in terms of QA, but it is the most important pre-requisite to be able to implement any measure of QA. Or the other way around, without reproduciblity there is no way that any statements about QA can be made after an analysis is completed.
+
+
+The whole process shown in Figrue \ref{fig:design_routine} is completely software-driven. Hence questions related to QA of the whole process do also relate to issues of QA in software-design. [@BF2004] (Chapter 10) is one of the many references on software quality. One aspect that appears to be relevant in our context is the software quality aspect that is related to correctness of a software program. The term correctnes here is defined as "the degree to which a software product meets established requirements"^[Often we do not have explicit requirements allowing for a correctness evaluation. In most cases, implicit requirements can be used to get a correctness estimate].  
+
+
+# Resources
+This chapter mentions a few resources concerning the concept of reproducibility
+
+## Scientific Research
+@FV2017 is a good resource providing a bird's eye view of the developments in open scientific research (OSR). OSR is also strongly based on reproducibility of scientific results. 
+
+## Reproducibility Crisis in Research
+The term _reproducibility crisis_ or replication crisis has its own [Wikipedia entry](https://en.wikipedia.org/wiki/Replication_crisis) 
+
 
 
 ```{r bib, include=FALSE}
@@ -99,7 +115,25 @@ vec_bref <- c(bibentry(
   publisher = "O'Reilly",
   url = "http://r4ds.had.co.nz/",
   key = "WG2017"
-))
+),
+bibentry(
+  bibtype = "Book",
+  title = "Guide to the Software Engineering Body of Knowledge (SWEBOK)",
+  editor = c(as.person("P. Boruque"), as.person("R. E. Fairley")),
+  year = "2004",
+  publisher = "IEEE",
+  url = "https://www.computer.org/web/swebok/index",
+  key = "BF2004"
+),
+bibentry(
+  bibtype = "Book",
+  title = "Open Science, Open Data, Open Source",
+  author = c(as.person("P. L. Fernandes"), as.person("R. A. Vos")),
+  publisher = "GitBook",
+  url = "https://pfern.github.io/OSODOS/gitbook/",
+  year = 2017,
+  key = "FV2017")
+)
 
 ### # output to bib file
 rmddochelper::write_bib(pvec_bref = vec_bref, ps_bibfile = s_bib_file)
