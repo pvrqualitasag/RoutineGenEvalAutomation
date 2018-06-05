@@ -84,25 +84,40 @@ s_design_routine_include_file <- gsub("odg", "png", s_design_routine_graphics_fi
 knitr::include_graphics(path = s_design_routine_include_file)
 ```
 
-
-# Quality Assurance (QA) in Data Science (DS)
-Data science has become a buzzword 
-
-The really essential concept that allows for any measures of quality assurance (QA) is __reproducibility__. At the same time, it has to be emphasized that reproducibility alone does not get us anything in terms of QA, but it is the most important pre-requisite to be able to implement any measure of QA. Or the other way around, without reproduciblity there is no way that any statements about QA can be made after an analysis is completed.
+# Concept of Quality Assurance (QA) in a Data Analysis
+The essential criterion of a data analysis which decides whether any statement about the quality of that analysis can be made is __reproducibility__^[The term 'reprducibility' is to be understood in the context of a data analysis.]. It has to be emphasized that reproducibility alone does not guarantee a high level of quality of any data analysis. But without reproducibility, the quality of a data analysis is impossible or at best very difficult to assess. 
 
 
-The whole process shown in Figrue \ref{fig:design_routine} is completely software-driven. Hence questions related to QA of the whole process do also relate to issues of QA in software-design. [@BF2004] (Chapter 10) is one of the many references on software quality. One aspect that appears to be relevant in our context is the software quality aspect that is related to correctness of a software program. The term correctnes here is defined as "the degree to which a software product meets established requirements"^[Often we do not have explicit requirements allowing for a correctness evaluation. In most cases, implicit requirements can be used to get a correctness estimate].  
+## Definition of Reproducibility
+A data analysis is _reproducible_ if a data analyst which is not the same person as the one who has done the data analysis in the first place, can reproduce the results of the analysis with the same input data and the same programs as the analysis was done by the original data analyst. 
+
+This other person that tries to reproduce any given data analysis from the above definition of reproducibility might also be future "you". In that case reproducibility yields some added benefit for the data analyst her- or himself.
 
 
-# Resources
+## How to ensure reproducibility
+Nowadays any data analysis is done with a statistical computing system^[Examples of such systems are MS Excel, SPSS, SAS, S-Plus, Python, R and many more.]. These systems can be used interactively where the user enters commands or navigates in GUI-based^[where GUI stands for Graphical User Interface] menus. Data analyses which are done in such an interactive mode cannot be made reproducible or are very difficult to make reproducible. We shall see later a weaker form of reproducibility which can be postulated for such analyses.
+
+Most statistical computing systmes can also be run with scripts or programs where sequences of statements are collected in a file^[which are called the script or the program] and these statements can then be run against the statistical computing system. The results produced by the data-analysis program must then be collected in a new result-file from which it is clear what the name of the program is and when the program was run to produce the given results^[more detailed information such as the version of the statistical computing system, any additional software needed, the operating system and the name of the machine can be helpful and are therefore desirable to be included in a result file]. 
+
+
+## How to used reproducibility for quality assurance 
+
+
+
+# Further Resources
+(needs to be completed)
+
 This chapter mentions a few resources concerning the concept of reproducibility
 
 ## Scientific Research
 @FV2017 is a good resource providing a bird's eye view of the developments in open scientific research (OSR). OSR is also strongly based on reproducibility of scientific results. 
 
 ## Reproducibility Crisis in Research
-The term _reproducibility crisis_ or replication crisis has its own [Wikipedia entry](https://en.wikipedia.org/wiki/Replication_crisis) 
+The term _reproducibility crisis_ or replication crisis has its own [Wikipedia entry](https://en.wikipedia.org/wiki/Replication_crisis). This term summarizes the problem of researchers to reproduce any published scientific results. 
 
+
+## Reproducibility and Software
+The whole process shown in Figrue \ref{fig:design_routine} is completely software-driven. Hence questions related to QA of the whole process do also relate to issues of QA in software-design. [@BF2004] (Chapter 10) is one of the many references on software quality. One aspect that appears to be relevant in our context is the software quality aspect that is related to correctness of a software program. The term correctnes here is defined as "the degree to which a software product meets established requirements"^[Often we do not have explicit requirements allowing for a correctness evaluation. In most cases, implicit requirements can be used to get a correctness estimate].  
 
 
 ```{r bib, include=FALSE}
