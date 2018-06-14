@@ -1,0 +1,50 @@
+---
+title: "Design of Data Analysis Routines"
+subtitle: "A Design Process Description"
+author: "Peter von Rohr"
+date: "`r Sys.Date()`"
+output:
+  tufte::tufte_html: default
+  tufte::tufte_handout:
+    citation_package: natbib
+    latex_engine: xelatex
+  tufte::tufte_book:
+    citation_package: natbib
+    latex_engine: xelatex
+bibliography: skeleton.bib
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+library(tufte)
+# invalidate cache when the tufte version changes
+knitr::opts_chunk$set(tidy = FALSE, cache.extra = packageVersion('tufte'))
+options(htmltools.dir.version = FALSE)
+```
+
+# Disclaimer
+This document is the result of a refactoring process of the original version of the QA and AM document [@vonRohr2018]. This document is focusing on the design of data analysis routines where as in the new version of the QA and AM document [@vonRohr2018] contains only the parts on quality assurance and automation. This allows for a better structuring and a clearer separation of the different concepts. 
+
+
+# Introduction
+One main area of activity for breeding organisation are genetic evaluation data analysis routines. Such routine analyses are done according to a given schedule. Depending on the livestock species this might happen on a daily basis or only a few times a year.
+
+
+# Terminology
+
+
+
+```{r bib, include=FALSE}
+vec_bref <- c(
+  bibentry(
+    bibtype = "Unpublished",
+    title   = "Concepts for QA and AM",
+    author  = "Peter von Rohr",
+    year    = 2018,
+    url     = "<insert URL to Confluence page>",
+    note    = "An internal document on QA and AM of data analysis processes",
+    key     = "vonRohr2018"))
+
+# write bib file
+rmddochelper::write_bib(pvec_bref = vec_bref)
+```
