@@ -1,0 +1,190 @@
+---
+title: "Concepts for QA and AM"
+subtitle: "Quality Assurance and Automation"
+author: "Peter von Rohr"
+date: "`r Sys.Date()`"
+output:
+  tufte::tufte_html: default
+  tufte::tufte_handout:
+    citation_package: natbib
+    latex_engine: xelatex
+  tufte::tufte_book:
+    citation_package: natbib
+    latex_engine: xelatex
+bibliography: skeleton.bib
+link-citations: yes
+---
+
+```{r setup, include=FALSE}
+library(tufte)
+# invalidate cache when the tufte version changes
+knitr::opts_chunk$set(tidy = FALSE, cache.extra = packageVersion('tufte'))
+options(htmltools.dir.version = FALSE)
+```
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(odg.conv=rmddochelper::odg.graphics.conv.hook)
+```
+
+
+# Disclaimer
+This document gives an outline of some concepts proposed in the area of quality assurance (QA) and automation (AM)
+
+
+# Concept of Quality Assurance (QA) in a Data Analysis
+The essential criterion of a data analysis which decides whether any statement about the quality of that analysis can be made is __reproducibility__^[The term 'reprducibility' is to be understood in the context of a data analysis.]. It has to be emphasized that reproducibility alone does not guarantee a high level of quality of any data analysis. But without reproducibility, the quality of a data analysis is impossible or at best very difficult to assess. 
+
+
+# Definition of Reproducibility
+A data analysis is _reproducible_ if a data analyst which is not the same person as the one who has done the data analysis in the first place, can reproduce the results of the analysis with the same input data and the same programs as the analysis was done by the original data analyst. 
+
+This other person that tries to reproduce any given data analysis from the above definition of reproducibility might also be future "you". In that case reproducibility yields some added benefit for the data analyst her- or himself.
+
+@Stevens2017 gives a distinction between reproducibility and replication.
+
+
+## How to ensure reproducibility
+Nowadays any data analysis is done with a statistical computing system^[Examples of such systems are MS Excel, SPSS, SAS, S-Plus, Python, R and many more.]. These systems can be used interactively where the user enters commands or navigates in GUI-based^[where GUI stands for Graphical User Interface] menus. Data analyses which are done in such an interactive mode cannot be made reproducible or are very difficult to make reproducible. We shall see later a weaker form of reproducibility which can be postulated for such analyses.
+
+Most statistical computing systmes can also be run with scripts or programs where sequences of statements are collected in a file^[which are called the script or the program] and these statements can then be run against the statistical computing system. The results produced by the data-analysis program must then be collected in a new result-file from which it is clear what the name of the program is and when the program was run to produce the given results^[more detailed information such as the version of the statistical computing system, any additional software needed, the operating system and the name of the machine can be helpful and are therefore desirable to be included in a result file]. 
+
+
+## Weak form of reproducibility
+When using a statistical computing system interactively or when performing the data analysis based on a given recipe, we can still obtain a weaker form of reproducibility. This can be achieved by collecting all output that is produced in a protocol document. This protocol lists the steps in the recipe with the associated output. Including the filename of the recipe and the name of the input data and the date when the analysis was performed, we can obtain a weaker form of the above described reproducibility property.
+
+
+## Ten rules for reproducibility
+@SNTH2013 gave ten simple rules that should be followed to reach the goal of reproducibility in computational research. 
+
+__Rule 1__: For Every Result, Keep Track of How It Was Produced
+
+* single commands, scripts, programs in executable script forms
+
+__Rule 2__: Avoid Manual Data Manipulation Steps
+
+* inefficient and error-prone not easily reproducible
+
+__Rule 3__: Archive the Exact Versions of All External Programs Used
+
+* it is not always trivial to get hold of a program in anything but the current version
+* to ensure future availability, the only viable solution may then be to store a full virtual machine image
+
+__Rule 4__: Version Control All Custom Scripts
+
+* to track evolution of code, use a version control system e.g. Git
+
+__Rule 5__: Record All Intermediate Results, When Possible in Standardized Formats
+
+* if enough storage
+
+__Rule 6__: For Analyses That Include Randomness, Note Underlying Random Seeds
+
+* allows exact results reproducibility
+
+__Rule 7__: Always Store Raw Data behind Plots
+
+* for example R code and the dataframe used as input
+
+__Rule 8__: Generate Hierarchical Analysis Output, Allowing Layers of Increasing Detail to Be Inspected
+
+* if storage allows it, keep track of all intermediate steps that led to the final results
+
+__Rule 9__: Connect Textual Statements to Underlying Results
+
+* within the text description always add links to scripts/data that shaped you logical deductions
+
+__Rule 10__: Provide Public Access to Scripts, Runs, and Results
+
+* for example link to your github account
+
+
+# How to use reproducibility for quality assurance 
+Based on the definition of reproducibility, we want to look at the results of a data analysis and be able to determine when the given results were produced, which input data were used and which program has generated those specific results. This requires every program to write the name of the program, the name of the input data file and the time of program execution to the result file. As already mentioned, further information about the analysis such as the machine name, the operating system, the version of the program and any additional software that were used can be very helpful. 
+
+Using the information in the resultfile as described in the previous paragraph, we can determine when, based on which input data and by which program a certain result file was generated. Because programs can change over time, it is important to use a version control system^[such as git, svn or cvs] for all the programs that are used in a data analysis. Only with a version control system, it is possible to be able to re-create a version of a program at a certain time point. 
+
+In general input data are too big to be included in a version control system. Furthermore, in most cases input data just grow over time, but they are very rarely changed in a different way. Hence the functionality of a version control system is not really needed for input data. It is sufficient to move input data into an archive where they can be restored in case that a certain analysis has to be reproduced. 
+
+Using all this information that characterizes a given data analysis, we are able to reproduce a certain analysis at any given point in time. This is particulary useful if a problem is found in a given data analysis. Being able to reproduce a certain data analysis, it is much easier to search for the causes of the observed problem.
+
+
+# Tools For Reproducible Data Analysis
+In the previous section, the required information to be included in a data analysis result file was listed. Because each program must write this information into the resultfile and this information is more or less constant, the use of prepared program templates can be very helpful. The template makes sure that the required information is automatically written to the result file. Most programs used for data analyses are written in Bash, Fortran, C/C++, Python or R. For each of these languages templates will be provided that satisfy the described requirement that make any given data analysis reproducible. 
+
+The tools will be provided as R-package which can either be used from inside R or from a commandline using shell-scripts.
+
+
+# Further Resources^[needs to be completed]
+This chapter mentions a few resources concerning the concept of reproducibility
+
+## Scientific Research
+@FV2017 is a good resource providing a bird's eye view of the developments in open scientific research (OSR). OSR is also strongly based on reproducibility of scientific results. 
+
+## Reproducibility Crisis in Research
+The term _reproducibility crisis_ or replication crisis has its own [Wikipedia entry](https://en.wikipedia.org/wiki/Replication_crisis). This term summarizes the problem of researchers to reproduce any published scientific results. 
+
+
+## Reproducibility and Software
+The whole process shown in Figrue \ref{fig:design_routine} is completely software-driven. Hence questions related to QA of the whole process do also relate to issues of QA in software-design. [@BF2004] (Chapter 10) is one of the many references on software quality. One aspect that appears to be relevant in our context is the software quality aspect that is related to correctness of a software program. The term correctnes here is defined as "the degree to which a software product meets established requirements"^[Often we do not have explicit requirements allowing for a correctness evaluation. In most cases, implicit requirements can be used to get a correctness estimate].  
+
+
+```{r bib, include=FALSE}
+s_bib_file <- "skeleton.bib"
+vec_bref <- c(bibentry(
+  bibtype = "Book",
+  title = "R for Data Science",
+  author = c(as.person("H. Wickham"), as.person("G. Grolemund")),
+  year = "2017",
+  publisher = "O'Reilly",
+  url = "http://r4ds.had.co.nz/",
+  key = "WG2017"
+),
+bibentry(
+  bibtype = "Book",
+  title = "Guide to the Software Engineering Body of Knowledge (SWEBOK)",
+  editor = c(as.person("P. Boruque"), as.person("R. E. Fairley")),
+  year = "2004",
+  publisher = "IEEE",
+  url = "https://www.computer.org/web/swebok/index",
+  key = "BF2004"
+),
+bibentry(
+  bibtype = "Book",
+  title = "Open Science, Open Data, Open Source",
+  author = c(as.person("P. L. Fernandes"), as.person("R. A. Vos")),
+  publisher = "GitBook",
+  url = "https://pfern.github.io/OSODOS/gitbook/",
+  year = 2017,
+  key = "FV2017"),
+bibentry(
+  bibtype = "Article",
+  title = "Replicability and Reproducibility in Comparative Psychology",
+  author = as.person("J.R. Stevens"),
+  journal = "Front Psychol",
+  year = 2017,
+  volume = 8,
+  pages = "862",
+  key = "Stevens2017"),
+bibentry(
+  bibtype = "Article",
+  title   = "Ten Simple Rules for Reproducible Computational Research",
+  author  = c(as.person("GK Sandve"), 
+              as.person("A Nekrutenko"),
+              as.person("J Taylor"),
+              as.person("E Hovig")),
+  journal = "PLoS Comput Biol",
+  year    = 2013,
+  volume  = 9,
+  pages   = "e1003285",
+  doi     = "https://doi.org/10.1371/journal.pcbi.1003285",
+  key     = "SNTH2013")
+)
+
+### # output to bib file
+rmddochelper::write_bib(pvec_bref = vec_bref, ps_bibfile = s_bib_file)
+
+# create a bib file for the R packages used in this document
+# knitr::write_bib(c('base', 'rmarkdown'), file = 'skeleton.bib')
+```
+
+

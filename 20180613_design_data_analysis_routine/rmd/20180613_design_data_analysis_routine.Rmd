@@ -29,8 +29,58 @@ This document is the result of a refactoring process of the original version of 
 # Introduction
 One main area of activity for breeding organisation are genetic evaluation data analysis routines. Such routine analyses are done according to a given schedule. Depending on the livestock species this might happen on a daily basis or only a few times a year.
 
+According to R for Data Science [@WG2017], the following model of a data science project can be proposed. 
 
-# Terminology
+```{r DsProjectModel,echo=FALSE, odg.conv=TRUE, odg.path="odg", odg.out.dir="png", odg.graph.cache=TRUE, fig.cap="Data Science Project Model", fig.margin=TRUE}
+knitr::include_graphics(path = "../png/DsProjectModel.png")
+```
+
+The model as defined above starts with importing the data into a statistics tool such as R. Hence, we assume that the data is available in a file in a pre-defined format or in a database in a specified set of tables. For the design of the routine analyses that will be discussed later, the process of exporting data from a given database will also be part of the model. This data export process can be thought of as a requirement of the above shown data science project model.
+
+
+## Componenents
+The above shown components can be explained as follows
+
+* __Import__: data must be imported first from a file^[When data is imported from file, a data-export process might be required to extract the data. Alternatively, it would be more convenient to directly transfer the data from the database into the statistics system.] or a database
+* __Tidy__: data is cleaned, verified and converted into a standard format, where each data record is on one row and each variable is represented by one column. 
+* __Transform__: after tidying certain variables are transformed. Here transformation also includes the computation of new variables from existing ones
+* __Visualise__: shows properties of data that are not necessarily expected, but visualisations do not scale
+* __Model__: are used to answer concrete questions and do scale well
+* __Communicate__: presentation of results
+
+
+# Routine Data Analysis Process
+In the context of the proposed concepts, the term _routine_ is defined as a data analysis task that is done using the same data science model components on a dataset that is growing over time. Hence some of the iterative components between transformation, visualisation and modelling might be replaced by a given path between the mentioned components that was determined in data science project that is done as a preparatory study for the routine data analysis. 
+
+
+## Preparatory Study
+Before, we can start a new data analysis that is planned to be done according to a routine schedule, we have to conduct a preparatory study that investigates a certain number of research questions. Such a preparatory study can be done according to the above given Data Science Project Model. The results of this preparatory study are not only the outcomes of the statistical analyses, but we also save the whole process of how we proceed from the input of the raw data to the statistical results. This process is defined as path between the different data science model components and it will be used in the routine data analysis. 
+
+An example of finding such a routine process is shown below (see Figure \ref{fig:find_routine_process}).
+
+```{r find_routine_process, echo=FALSE, fig.cap="\\label{fig:find_routine_process}Create Routine Analysis From Results Of Preparatory Study", fig.height=3}
+s_graphics_file <- "../odg/find_routine_process.odg"
+if (!file.exists(s_graphics_file)){
+  rmddochelper:::odg_draft(file = s_graphics_file, package = "rmddochelper")
+}
+s_include_file <- gsub("odg", "png", s_graphics_file, fixed = TRUE)
+knitr::include_graphics(path = s_include_file)
+```
+
+
+## Routine Design
+The above shown result from the preparatory study can now be applied in a given routine schedule plan. The repetition of the routine data analysis over time with data that increases over time leads to the final process of a routine data analysis process. This final process is shown below.
+
+```{r design_routine, echo=FALSE, fig.cap="\\label{fig:design_routine}Routine Data Analysis Process", fig.height=3}
+s_design_routine_graphics_file <- "../odg/design_routine.odg"
+if (!file.exists(s_design_routine_graphics_file)){
+  rmddochelper:::odg_draft(file = s_design_routine_graphics_file, package = "rmddochelper")
+  system(paste(rmddochelper::get_odg_prog_path(), s_design_routine_graphics_file))
+}
+s_design_routine_include_file <- gsub("odg", "png", s_design_routine_graphics_file, fixed = TRUE)
+knitr::include_graphics(path = s_design_routine_include_file)
+```
+
 
 
 
