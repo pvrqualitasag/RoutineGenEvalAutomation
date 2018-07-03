@@ -31,13 +31,12 @@ knitr::opts_chunk$set(odg.conv=rmddochelper::odg.graphics.conv.hook)
 This document gives an outline of some concepts proposed in the area of quality assurance (QA) and automation (AM)
 
 
-
 # Concept of Quality Assurance (QA) in a Data Analysis (DA)
 When looking at quality assurance in a data analysis it appears to be useful to differentiate between different time periods that occur in a data analysis. The first time period corresponds to the period before the analysis is executed. 
 The essential criterion of a data analysis which decides whether any statement about the quality of that analysis can be made is __reproducibility__^[The term 'reprducibility' is to be understood in the context of a data analysis.]. It has to be emphasized that reproducibility alone does not guarantee a high level of quality of any data analysis. But without reproducibility, the quality of a data analysis is impossible or at best very difficult to assess. 
 
 
-## Definition of Reproducibility
+# Definition of Reproducibility
 A data analysis is _reproducible_ if a data analyst which is not the same person as the one who has done the data analysis in the first place, can reproduce the results of the analysis with the same input data and the same programs as the analysis was done by the original data analyst. 
 
 This other person that tries to reproduce any given data analysis from the above definition of reproducibility might also be future "you". In that case reproducibility yields some added benefit for the data analyst her- or himself.
@@ -55,7 +54,52 @@ Most statistical computing systmes can also be run with scripts or programs wher
 When using a statistical computing system interactively or when performing the data analysis based on a given recipe, we can still obtain a weaker form of reproducibility. This can be achieved by collecting all output that is produced in a protocol document. This protocol lists the steps in the recipe with the associated output. Including the filename of the recipe and the name of the input data and the date when the analysis was performed, we can obtain a weaker form of the above described reproducibility property.
 
 
-## How to use reproducibility for quality assurance 
+## Ten rules for reproducibility
+@SNTH2013 gave ten simple rules that should be followed to reach the goal of reproducibility in computational research. 
+
+__Rule 1__: For Every Result, Keep Track of How It Was Produced
+
+* single commands, scripts, programs in executable script forms
+
+__Rule 2__: Avoid Manual Data Manipulation Steps
+
+* inefficient and error-prone not easily reproducible
+
+__Rule 3__: Archive the Exact Versions of All External Programs Used
+
+* it is not always trivial to get hold of a program in anything but the current version
+* to ensure future availability, the only viable solution may then be to store a full virtual machine image
+
+__Rule 4__: Version Control All Custom Scripts
+
+* to track evolution of code, use a version control system e.g. Git
+
+__Rule 5__: Record All Intermediate Results, When Possible in Standardized Formats
+
+* if enough storage
+
+__Rule 6__: For Analyses That Include Randomness, Note Underlying Random Seeds
+
+* allows exact results reproducibility
+
+__Rule 7__: Always Store Raw Data behind Plots
+
+* for example R code and the dataframe used as input
+
+__Rule 8__: Generate Hierarchical Analysis Output, Allowing Layers of Increasing Detail to Be Inspected
+
+* if storage allows it, keep track of all intermediate steps that led to the final results
+
+__Rule 9__: Connect Textual Statements to Underlying Results
+
+* within the text description always add links to scripts/data that shaped you logical deductions
+
+__Rule 10__: Provide Public Access to Scripts, Runs, and Results
+
+* for example link to your github account
+
+
+# How to use reproducibility for quality assurance 
 Based on the definition of reproducibility, we want to look at the results of a data analysis and be able to determine when the given results were produced, which input data were used and which program has generated those specific results. This requires every program to write the name of the program, the name of the input data file and the time of program execution to the result file. As already mentioned, further information about the analysis such as the machine name, the operating system, the version of the program and any additional software that were used can be very helpful. 
 
 Using the information in the resultfile as described in the previous paragraph, we can determine when, based on which input data and by which program a certain result file was generated. Because programs can change over time, it is important to use a version control system^[such as git, svn or cvs] for all the programs that are used in a data analysis. Only with a version control system, it is possible to be able to re-create a version of a program at a certain time point. 
@@ -122,7 +166,20 @@ bibentry(
   year = 2017,
   volume = 8,
   pages = "862",
-  key = "Stevens2017")
+  key = "Stevens2017"),
+bibentry(
+  bibtype = "Article",
+  title   = "Ten Simple Rules for Reproducible Computational Research",
+  author  = c(as.person("GK Sandve"), 
+              as.person("A Nekrutenko"),
+              as.person("J Taylor"),
+              as.person("E Hovig")),
+  journal = "PLoS Comput Biol",
+  year    = 2013,
+  volume  = 9,
+  pages   = "e1003285",
+  doi     = "https://doi.org/10.1371/journal.pcbi.1003285",
+  key     = "SNTH2013")
 )
 
 ### # output to bib file
