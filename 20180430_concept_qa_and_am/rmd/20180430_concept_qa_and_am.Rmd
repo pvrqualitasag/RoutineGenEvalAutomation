@@ -4,10 +4,10 @@ subtitle: "Quality Assurance and Automation"
 author: "Peter von Rohr"
 date: "`r Sys.Date()`"
 output:
-  tufte::tufte_html: default
   tufte::tufte_handout:
     citation_package: natbib
     latex_engine: xelatex
+  tufte::tufte_html: default
   tufte::tufte_book:
     citation_package: natbib
     latex_engine: xelatex
@@ -20,10 +20,8 @@ library(tufte)
 # invalidate cache when the tufte version changes
 knitr::opts_chunk$set(tidy = FALSE, cache.extra = packageVersion('tufte'))
 options(htmltools.dir.version = FALSE)
-```
-
-```{r, echo=FALSE}
-knitr::opts_chunk$set(odg.conv=rmddochelper::odg.graphics.conv.hook)
+# conversion hook
+knitr::opts_chunk$set(odg_conv = rmddochelper::odg_convert_hook)
 ```
 
 
@@ -32,7 +30,17 @@ This document gives an outline of some concepts proposed in the area of quality 
 
 
 # Concept of Quality Assurance (QA) in a Data Analysis (DA)
-When looking at quality assurance in a data analysis it appears to be useful to differentiate between different time periods that occur in a data analysis. The first time period corresponds to the period before the analysis is executed. 
+When looking at quality assurance in a data analysis it appears to be useful to differentiate between different time periods that occur in a data analysis. These time periods are shown in the diagram below.
+
+```{r da_period, odg_conv=TRUE, fig_path='../odg', out_format='png'}
+rmddochelper::use_odg_graphic(ps_path = '../odg/da_period.odg')
+```
+
+
+
+The first time period corresponds to the period before the analysis is executed. 
+
+
 The essential criterion of a data analysis which decides whether any statement about the quality of that analysis can be made is __reproducibility__^[The term 'reprducibility' is to be understood in the context of a data analysis.]. It has to be emphasized that reproducibility alone does not guarantee a high level of quality of any data analysis. But without reproducibility, the quality of a data analysis is impossible or at best very difficult to assess. 
 
 
