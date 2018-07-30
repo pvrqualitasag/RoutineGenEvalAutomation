@@ -20,10 +20,8 @@ library(tufte)
 # invalidate cache when the tufte version changes
 knitr::opts_chunk$set(tidy = FALSE, cache.extra = packageVersion('tufte'))
 options(htmltools.dir.version = FALSE)
-```
-
-```{r, echo=FALSE}
-knitr::opts_chunk$set(odg.conv=rmddochelper::odg.graphics.conv.hook)
+# conversion hook
+knitr::knit_hooks$set(hook_convert_odg = rmddochelper::hook_convert_odg)
 ```
 
 
@@ -32,22 +30,19 @@ This document gives an outline of some concepts proposed in the area of quality 
 
 
 # Concept of Quality Assurance (QA) in a Data Analysis (DA)
-When looking at quality assurance in a data analysis it appears to be useful to differentiate between the following time periods during a data analysis. 
+When looking at quality assurance in a data analysis it appears to be useful to differentiate between different time periods that occur in and around a data analysis. These time periods are shown in the diagram^[The horizontal axis corresponds to time and the vertical arrow points to the timepoint when the data analysis is done.] below.
 
-1. Planning phase. 
-2. Execution of actual data analysis.
-3. Post-analysis period. 
-
-```{r}
-this_wd <- getwd()
-this_rmd <- list.files(this_wd, pattern = "Rmd$")
-
-rmddochelper::use_odg_graphic(ps_odg_file = "../odg/PeriodDataAnalysis.odg")
+```{r da_period, echo=FALSE, hook_convert_odg=TRUE, fig_path="../odg"}
+#rmddochelper::use_odg_graphic(ps_path = '../odg/da_period.odg')
+knitr::include_graphics(path = "../odg/da_period.png")
 ```
 
 
+The period before the data analysis is done, the analyst should be doing some preparations. These either consist of planning some experiments, doing some power calculations or searching the literature for similar data analyses that have already been done. All these preparations help the analyst in specifying what type of method should be chosen^[Very often data analysts start the search for a method when the data is already collected] and what can be exptected from the analysis. 
 
-The essential criterion of a data analysis which decides whether any statement about the quality of that analysis can be made is __reproducibility__^[The term 'reprducibility' is to be understood in the context of a data analysis.]. It has to be emphasized that reproducibility alone does not guarantee a high level of quality of any data analysis. But without reproducibility, the quality of a data analysis is impossible or at best very difficult to assess. 
+
+# Unifying Criterion
+The essential criterion during all periods of a data analysis which decides whether any statement about the quality of that analysis can be made is __reproducibility__^[The term 'reprducibility' is to be understood in the context of a data analysis.]. It has to be emphasized that reproducibility alone does not guarantee any level of quality for a given data analysis. But without reproducibility, the quality of a data analysis is impossible or at best very difficult to assess. 
 
 
 # Definition of Reproducibility
@@ -203,4 +198,4 @@ rmddochelper::write_bib(pvec_bref = vec_bref, ps_bibfile = s_bib_file)
 # knitr::write_bib(c('base', 'rmarkdown'), file = 'skeleton.bib')
 ```
 
-
+ 
