@@ -28,11 +28,25 @@ knitr::opts_chunk$set(odg.conv=rmddochelper::odg.graphics.conv.hook)
 
 
 # Disclaimer
-This document gives an outline of some concepts proposed in the area of quality assurance (QA) and automation (AM)
+This document gives an outline of some concepts proposed in the area of quality assurance (QA) and automation (AM). In an obvious way, this project is called QAAM. In a first step, we are focusing on the QA-part of the project. 
 
 
 # Concept of Quality Assurance (QA) in a Data Analysis (DA)
-When looking at quality assurance in a data analysis it appears to be useful to differentiate between different time periods that occur in a data analysis. The first time period corresponds to the period before the analysis is executed. 
+When looking at quality assurance in a data analysis it appears to be useful to differentiate between the following time periods during a data analysis. 
+
+1. Planning phase. 
+2. Execution of actual data analysis.
+3. Post-analysis period. 
+
+```{r}
+this_wd <- getwd()
+this_rmd <- list.files(this_wd, pattern = "Rmd$")
+
+rmddochelper::use_odg_graphic(ps_odg_file = "../odg/PeriodDataAnalysis.odg")
+```
+
+
+
 The essential criterion of a data analysis which decides whether any statement about the quality of that analysis can be made is __reproducibility__^[The term 'reprducibility' is to be understood in the context of a data analysis.]. It has to be emphasized that reproducibility alone does not guarantee a high level of quality of any data analysis. But without reproducibility, the quality of a data analysis is impossible or at best very difficult to assess. 
 
 
@@ -114,9 +128,9 @@ In the previous section, the required information to be included in a data analy
 
 The tools will be provided as R-package which can either be used from inside R or from a commandline using shell-scripts.
 
+# Docker Containers for Reproducible Research^[To Be Completed]
 
-
-# Further Resources^[needs to be completed]
+# Further Resources^[To Be Completed]
 This chapter mentions a few resources concerning the concept of reproducibility
 
 ## Scientific Research
