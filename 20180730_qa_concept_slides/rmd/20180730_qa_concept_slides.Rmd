@@ -1,0 +1,59 @@
+---
+title: "Quality Assurance (QA)"
+author: "Peter von Rohr"
+date: "7/30/2018"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Data Analysis
+```{r da_period, echo=FALSE}
+knitr::include_graphics(path = "../odg/da_period.png")
+```
+
+## Reproducibility
+- QA in data analysis (DA) is based on a single concept
+
+$\rightarrow$ __Reproducbility__
+
+- Definition: DA is reproducible, if and only if some else can come up with the same results
+
+```{r reprodef, echo=FALSE, out.height=280, fig.align='center'}
+knitr::include_graphics(path = "../odg/reprodef.png")
+```
+
+- Reproducibility alone does not guarantee QA in DA
+
+
+## Ten Rules
+
+1. For Every Result, Keep Track of How It Was Produced
+2. Avoid Manual Data Manipulation Steps
+3. Archive the Exact Versions of All External Programs Used
+4. Version Control All Custom Scripts
+5. Record All Intermediate Results, When Possible in Standardized Formats
+6. For Analyses That Include Randomness, Note Underlying Random Seeds
+7. Always Store Raw Data behind Plots
+8. Generate Hierarchical Analysis Output, Allowing Layers of Increasing Detail to Be Inspected
+9. Connect Textual Statements to Underlying Results
+10. Provide Public Access to Scripts, Runs, and Results
+
+
+## Techniques
+- Literate programming
+- Templating
+- Version control
+
+
+## Tools
+- git for version control
+- R, Rmarkdown, knitr, for literate programming
+- RStudio as general framework
+- bash scripts for templating
+
+
+## Applications
+- Pedigree export

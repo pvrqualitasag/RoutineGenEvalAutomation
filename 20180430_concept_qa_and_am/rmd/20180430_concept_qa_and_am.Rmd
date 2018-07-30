@@ -26,37 +26,35 @@ knitr::knit_hooks$set(hook_convert_odg = rmddochelper::hook_convert_odg)
 
 
 # Disclaimer
-This document gives an outline of some concepts proposed in the area of quality assurance (QA) and automation (AM). In an obvious way, this project is called QAAM. In a first step, we are focusing on the QA-part of the project. 
+This document gives an outline of some concepts proposed in the area of quality assurance (QA) and automation (AM). Based these abbreviations, the project is named `QAAM`. In a first step, we are focusing on the QA-part of the project. 
 
 
 # Concept of Quality Assurance (QA) in a Data Analysis (DA)
-When looking at quality assurance in a data analysis it appears to be useful to differentiate between different time periods that occur in and around a data analysis. These time periods are shown in the diagram^[The horizontal axis corresponds to time and the vertical arrow points to the timepoint when the data analysis is done.] below.
+When looking at quality assurance in a data analysis it appears to be useful to differentiate between the time period^[See the diagram below. The horizontal axis corresponds to time and the vertical arrow points to the timepoint when the data analysis is done.]
+
+*  __before__ and 
+* that __after__ the analysis has been done. 
+
 
 ```{r da_period, echo=FALSE, hook_convert_odg=TRUE, fig_path="../odg"}
 #rmddochelper::use_odg_graphic(ps_path = '../odg/da_period.odg')
 knitr::include_graphics(path = "../odg/da_period.png")
 ```
 
+The time period before the analysis has been done, should be used for planning the analysis. Depending on whether the data comes out of a designed experiment or whether the data is collected for some other reason, the work that is done during the planning phase can look different. An experiment should be designed such that the questions of interest can be answered within the budget constraints. When the data is collected for other purposes, the data analysis can still be planned by e.g. comparing different statistical methods based on previously collected or based on simulated data.
 
-The period before the data analysis is done, the analyst should be doing some preparations. These either consist of planning some experiments, doing some power calculations or searching the literature for similar data analyses that have already been done. All these preparations help the analyst in specifying what type of method should be chosen^[Very often data analysts start the search for a method when the data is already collected] and what can be exptected from the analysis. 
+In the context of livestock breeding, the data is often collected for other purposes, then for the use in a breeding program. Hence the data that are analyzed in this context are mostly given and the underlying structure of the data cannot be changed. Hence, the planning phase is reduced to comparing different statistical methods for using the given data in an optimal way. In most cases similar data of different countries are available or are described in publications and with results from such previous studies, we can check whether the chosen statistical method is suitable.
+
+Once the data analysis is done, the results of the analysis can be inspected and compared to our expectations from the planning phase or to other results based on the same kind of data. These comparisons might reveal unexpected features of the results. In such a situation, it is very important that we can trust these results. But results of a data analysis can only be trustworthy, when the analysis producing the results fullfills certain quality standards. At this point it is important to note that we must have some measure or some criterion that allows us to quantify the quality of a data analysis. 
 
 
 # Unifying Criterion
-The essential criterion during all periods of a data analysis which decides whether any statement about the quality of that analysis can be made is __reproducibility__^[The term 'reprducibility' is to be understood in the context of a data analysis.]. It has to be emphasized that reproducibility alone does not guarantee any level of quality for a given data analysis. But without reproducibility, the quality of a data analysis is impossible or at best very difficult to assess. 
-
-
-# Definition of Reproducibility
-A data analysis is _reproducible_ if a data analyst which is not the same person as the one who has done the data analysis in the first place, can reproduce the results of the analysis with the same input data and the same programs as the analysis was done by the original data analyst. 
-
-This other person that tries to reproduce any given data analysis from the above definition of reproducibility might also be future "you". In that case reproducibility yields some added benefit for the data analyst her- or himself.
-
-@Stevens2017 gives a distinction between reproducibility and replication.
-
+The essential criterion of a data analysis that allows us to make any statements about the quality of that analysis is __reproducibility__^[Have a look at the appendix of this document for a definition of reproducibility]. It must be emphasized that reproducibility on its own does not guarantee any level of quality, but without reproducibility, it is impossible to assess the quality of a data analysis.
 
 ## How to ensure reproducibility
-Nowadays any data analysis is done with a statistical computing system^[Examples of such systems are MS Excel, SPSS, SAS, S-Plus, Python, R and many more.]. These systems can be used interactively where the user enters commands or navigates in GUI-based^[where GUI stands for Graphical User Interface] menus. Data analyses which are done in such an interactive mode cannot be made reproducible or are very difficult to make reproducible. We shall see later a weaker form of reproducibility which can be postulated for such analyses.
+Nowadays all data analyses are done using a certain software program. From now on, we call such programs `statistical computing system`^[Examples of such systems are MS Excel, SPSS, SAS, S-Plus, Python, R and many more.]. These systems can be used either  interactively or in a so-called `batch-mode`.  When using such a system interactively, the user enters commands or navigates in GUI-based^[where GUI stands for Graphical User Interface] menus. Data analyses which are done interactively, cannot be made reproducible or are very difficult to be made reproducible^[We shall see later a weaker form of reproducibility which can be postulated for such analyses].
 
-Most statistical computing systmes can also be run with scripts or programs where sequences of statements are collected in a file^[which are called the script or the program] and these statements can then be run against the statistical computing system. The results produced by the data-analysis program must then be collected in a new result-file from which it is clear what the name of the program is and when the program was run to produce the given results^[more detailed information such as the version of the statistical computing system, any additional software needed, the operating system and the name of the machine can be helpful and are therefore desirable to be included in a result file]. 
+Most statistical computing systmes can also be run in a batch-mode. This means that scripts or programs which correspond to sequences of statements that are collected in a file^[which are called the script or the program] are executed in the statistical computing system. The results produced by the data-analysis program must  be collected in a result-file from which it is clear what the name of the program is and when the program was run to produce the given results^[more detailed information such as the version of the statistical computing system, any additional software needed, the operating system and the name of the machine can be helpful and are therefore desirable to be included in a result file]. 
 
 
 ## Weak form of reproducibility
@@ -118,12 +116,43 @@ In general input data are too big to be included in a version control system. Fu
 Using all this information that characterizes a given data analysis, we are able to reproduce a certain analysis at any given point in time. This is particulary useful if a problem is found in a given data analysis. Being able to reproduce a certain data analysis, it is much easier to search for the causes of the observed problem.
 
 
-# Tools For Reproducible Data Analysis
+# Techniques And Tools For Reproducible Data Analysis^[To Be Completed]
+## Templates
 In the previous section, the required information to be included in a data analysis result file was listed. Because each program must write this information into the resultfile and this information is more or less constant, the use of prepared program templates can be very helpful. The template makes sure that the required information is automatically written to the result file. Most programs used for data analyses are written in Bash, Fortran, C/C++, Python or R. For each of these languages templates will be provided that satisfy the described requirement that make any given data analysis reproducible. 
 
-The tools will be provided as R-package which can either be used from inside R or from a commandline using shell-scripts.
 
-# Docker Containers for Reproducible Research^[To Be Completed]
+## Literate Programming
+
+
+
+## Version Control
+
+
+## Docker Containers for Reproducible Research
+
+
+## R and Rstudio
+
+
+
+# Appendix
+
+## Definition of Reproducibility
+```{r reprodef, echo=FALSE, hook_convert_odg=TRUE, fig_path="../odg", fig.margin = TRUE, fig.cap="Definition of Reproducibility"}
+#rmddochelper::use_odg_graphic(ps_path = "../odg/reprodef.odg")
+knitr::include_graphics(path = "../odg/reprodef.png")
+```
+
+A data analysis is _reproducible_ if a data analyst which is not the same person as the one who has done the data analysis in the first place, can reproduce the results of the analysis with the same input data and the same programs as the analysis was done by the original data analyst. 
+
+This other person that tries to reproduce any given data analysis from the above definition of reproducibility might also be future "you". In that case reproducibility yields some added benefit for the data analyst her- or himself.
+
+
+
+@Stevens2017 gives a distinction between reproducibility and replication.
+
+
+
 
 # Further Resources^[To Be Completed]
 This chapter mentions a few resources concerning the concept of reproducibility
@@ -198,4 +227,4 @@ rmddochelper::write_bib(pvec_bref = vec_bref, ps_bibfile = s_bib_file)
 # knitr::write_bib(c('base', 'rmarkdown'), file = 'skeleton.bib')
 ```
 
- 
+  
