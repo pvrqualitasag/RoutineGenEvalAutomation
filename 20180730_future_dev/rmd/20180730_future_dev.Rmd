@@ -29,7 +29,14 @@ It might be worthwhile thinking about the different changes that are needed in o
 
 
 ## Puzzeling Questions
-### Separation of master scripts into templates and executing code
+### Q1: Separation of master scripts into templates and executing code
 The current versions of master scripts contain execution statements together with writing parameter files. Many of these details remain constant over the different instances of a given routine data analysis. Would it not be better to separate the constant parts of a parameter file into a template of this parameter file and use the script only to change the parts that depend on the different instances of a routine analysis?
+
+### A1: Separation of executing code into scripts and constant config parts into templates
+The reason for why this separation is necessary to keep reproducibility is because if we want to make small changes in the parts of the script that outputs the constant configuration files, such as the statistical model formulation for MiX99 and if running the complete master script takes a significant amount of time, then reproducibility can only be guaranteed, if the whole master script is run again with every small change. If the small changes are only done in the resulting parameter files, reproducibilty is broken. 
+
+An alternative approach to keep reproducibility is to move the parts that are constant from the master script into a template and to this template the changes are applied and the parts of the analysis that involves the changes are repeated. 
+
+Reproducibility can be installed by either looking at the time-stamps of the configuration templates and the log-files or by including the git version numbers of the used configuration file. 
 
 
