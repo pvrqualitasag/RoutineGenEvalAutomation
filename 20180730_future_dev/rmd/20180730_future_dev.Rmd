@@ -20,12 +20,14 @@ As an example of the current status of the analysis routines, we are looking at 
 ### Characterizing the steps
 In this subsection, we try to group the different steps according to their properties. 
 
-* A first category contains the steps that are executed manually by entering statements at the command-line prompt (Steps 1, 2, 7 and 8). This category includes the manual editing steps of input files or scripts. When following the steps that are given on the instructions page and by comparing the results to already existing versions of the input files or the scripts. These steps are already reproducible. The only negative point of these manual steps is that it is tedious to execute the steps and it is error-prone.
+* A first category contains the steps that are executed manually by entering statements at the command-line prompt (Steps 1, 2, 7 and 8). This category includes the manual editing steps of input files or scripts. When following the steps that are given on the instructions page and by comparing the results to already existing versions of the input files or the scripts. These steps are already reproducible, assuming that when the resulting files are changed, these changes are also implemented in the instructions. The negative points of manually changing certain parts of the routine analysis are 
+    1. all changes must be implemented twice, a first time in the instructions and a second time in the resulting files.
+    2. it is tedious to execute the steps and it is error-prone.
 * The second category of steps describes which programs are to be started using which input. The steps in this category are easier to reproduce in terms of re-executing the commands to start the programs. But they are lacking a description of the results to what a reproducing run of the programs must be compared to. 
 
 
 ## Refactoring
-It might be worthwhile thinking about the different changes that are needed in order to reach a code base that shows improved properties with respect to reproducibility. The required set of changes is determined by those parts of the current code base which do not show any properties of reproducibility.
+It might be worth while thinking about the different changes that are needed in order to reach a code base that shows improved properties with respect to reproducibility. The required set of changes is determined by those parts of the current code base which do not show any properties of reproducibility.
 
 
 ## Puzzeling Questions
@@ -39,4 +41,8 @@ An alternative approach to keep reproducibility is to move the parts that are co
 
 Reproducibility can be installed by either looking at the time-stamps of the configuration templates and the log-files or by including the git version numbers of the used configuration file. 
 
+
+```{r, echo=FALSE, results='asis'}
+cat(rmddochelper::get_latest_change())
+```
 
