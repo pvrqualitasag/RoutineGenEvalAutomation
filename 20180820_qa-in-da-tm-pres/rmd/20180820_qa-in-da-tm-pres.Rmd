@@ -1,0 +1,22 @@
+---
+title: "Quality Assurance"
+author: "Peter von Rohr"
+date: "8/20/2018"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::knit_hooks$set(hook_convert_odg = rmddochelper::hook_convert_odg)
+```
+
+## Concepts for Quality Assurance in Data Analyses
+
+```{r da-time-period, echo=FALSE, fig.align='center', out.width="8cm", hook_convert_odg=TRUE, fig_path="../odg"}
+knitr::include_graphics(path = "../odg/da-time-period.png")
+```
+
+* Current focus on period after data analysis
+
+## Reproducibility
+* Only one concept seams relevant

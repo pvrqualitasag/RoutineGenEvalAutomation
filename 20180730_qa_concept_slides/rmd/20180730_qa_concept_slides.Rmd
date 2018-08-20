@@ -9,10 +9,14 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Data Analysis
-```{r da_period, echo=FALSE}
+## Time Periods Around a Data Analysis
+```{r da_period, echo=FALSE, fig.align='center', out.width=720}
 knitr::include_graphics(path = "../odg/da_period.png")
 ```
+
+
+## Data Analysis
+
 
 ## Reproducibility
 - QA in data analysis (DA) is based on a single concept
