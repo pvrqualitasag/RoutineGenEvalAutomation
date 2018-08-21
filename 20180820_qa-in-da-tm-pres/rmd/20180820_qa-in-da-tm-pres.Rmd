@@ -2,7 +2,11 @@
 title: "Quality Assurance"
 author: "Peter von Rohr"
 date: "8/20/2018"
-output: beamer_presentation
+output: 
+  beamer_presentation:
+    citation_package: natbib
+bibliography: ["Peng2011.bib", "Tait2017.bib"] 
+biblio-style: "apalike"
 ---
 
 ```{r setup, include=FALSE}
@@ -12,11 +16,66 @@ knitr::knit_hooks$set(hook_convert_odg = rmddochelper::hook_convert_odg)
 
 ## Concepts for Quality Assurance in Data Analyses
 
-```{r da-time-period, echo=FALSE, fig.align='center', out.width="8cm", hook_convert_odg=TRUE, fig_path="../odg"}
+```{r da-time-period, echo=FALSE, fig.align='center', out.width="9cm", hook_convert_odg=TRUE, fig_path="../odg"}
 knitr::include_graphics(path = "../odg/da-time-period.png")
 ```
 
 * Current focus on period after data analysis
 
 ## Reproducibility
-* Only one concept seams relevant
+* Only one concept seams relevant: __Reproducibility__
+* ... is a minimal requirement for QA
+* ... alone is no guarantee for good quality
+
+
+## Definition
+* [Wikipedia](https://en.wikipedia.org/wiki/Reproducibility): 
+
+> ... closeness of the agreement between the results of measurements of the same measurand carried out with same methodology ...
+
+* In [@Peng2011]: 
+
+> The standard of reproducibility calls for the data and the computer code used to analyze the data be made available to others.
+
+
+## Reproducibility explained
+
+```{r def-repro, echo=FALSE, fig.align='center', out.width="11cm", hook_convert_odg=TRUE, fig_path="../odg"}
+#rmddochelper::use_odg_graphic(ps_path = "../odg/def-repro.odg")
+knitr::include_graphics(path = "../odg/def-repro.png")
+```
+
+
+## Why Reproducibility?
+According to http://blog.revolutionanalytics.com/2017/04/reproducible-data-science-with-r.html
+
+* __Saves time__: easier to build efficient pipelines
+* __Produces better science__: no usage of spurious results further down
+* __Creates more trusted research__: results verified by trusted parties
+* __Reduces the risk of errors__: such as losses during financial crisis
+* __Encourages collaboration__: sharing of data and code is easier
+
+ 
+## Ten Rules of Reproducibility [@Tait2017]
+1. For every result, keep track of how it was produced
+2. Avoid manual data manipulation
+3. Archive the exact versions of all external programs used
+4. Version control all custom scripts
+5. Record all intermediate results
+6. Note underlying random seeds
+7. Always store raw data behind plots
+8. Generate hierarchical analysis output, allowing layers of increasing detail to be inspected
+9. Connect textual statements to underlying results
+10. Provide public access to scripts, runs and results
+
+
+## What does it mean for us
+
+* Example: Pedigree export
+    + Old: Starting export from GUI, passing parameter file, obtaining results $\rightarrow$ __cannot__ be made reproducible
+    + New: Script generating parameter file, starting export $\rightarrow$ __can__ be made reproducible
+* More Examples: ... (open for discussion)    
+
+
+# References
+
