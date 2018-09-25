@@ -4,11 +4,11 @@ subtitle: "Quality Assurance and Automation"
 author: "Peter von Rohr"
 date: "`r Sys.Date()`"
 output:
-  tufte::tufte_html: default
-  tufte::tufte_handout:
+  bookdown::tufte_html2: default
+  bookdown::tufte_handout2:
     citation_package: natbib
     latex_engine: xelatex
-  tufte::tufte_book:
+  bookdown::tufte_book2:
     citation_package: natbib
     latex_engine: xelatex
 bibliography: skeleton.bib
@@ -30,7 +30,7 @@ This document gives an outline of some concepts proposed for quality assurance (
 
 
 # Concept of Quality Assurance (QA) in a Data Analysis (DA)
-When looking at quality assurance in a data analysis it appears to be useful to differentiate between the time period^[See the diagram below. The horizontal axis corresponds to time and the vertical arrow points to the timepoint when the data analysis is done.]
+When looking at quality assurance in a data analysis it appears to be useful to differentiate between the time period^[See the diagram  (Figure \@ref(fig:da-period)) below. The horizontal axis corresponds to time and the vertical arrow points to the timepoint when the data analysis is done.]
 
 *  __before__ and 
 *  __after__ 
@@ -38,9 +38,9 @@ When looking at quality assurance in a data analysis it appears to be useful to 
 the analysis has been done. 
 
 
-```{r da_period, echo=FALSE, hook_convert_odg=TRUE, fig_path="../odg", fig.fullwidth=TRUE}
-#rmddochelper::use_odg_graphic(ps_path = '../odg/da_period.odg')
-knitr::include_graphics(path = "../odg/da_period.png")
+```{r da-period, echo=FALSE, hook_convert_odg=TRUE, fig_path="../odg", fig.cap="Periods Of A Data Analysis", fig.fullwidth=TRUE}
+#rmddochelper::use_odg_graphic(ps_path = '../odg/da-period.odg')
+knitr::include_graphics(path = "../odg/da-period.png")
 ```
 
 In an ideal case, the time period before the analysis, should be used for planning the analysis. Depending on whether the data comes out of a designed experiment or whether the data is collected for some other reason, the work that is done during the planning phase can look different. An experiment should be designed such that the questions of interest can be answered within the budget constraints. When the data is collected for other purposes, the data analysis can still be planned, e.g. by comparing different statistical methods based on previously collected or based on simulated data.
@@ -55,7 +55,7 @@ The concepts developed here are more concerned about how to establish measures o
 # Unifying Criterion
 The essential criterion of a data analysis that allows us to make any statements about the quality of that analysis is __reproducibility__^[Have a look at the appendix of this document for a definition of reproducibility]. It must be emphasized that reproducibility on its own does not guarantee any level of quality, but without reproducibility, it is impossible to assess the quality of a data analysis.
 
-## How to ensure reproducibility
+## How to ensure reproducibility {#ensurerepro}
 Nowadays all data analyses are done using a certain software program. From now on, we call such programs `statistical computing system`^[Examples of such systems are MS Excel, SPSS, SAS, S-Plus, Python, R and many more.]. These systems can be used either  interactively or they can be driven by specific programming languages.  When using such a system interactively, the user enters commands or navigates in GUI-based^[where GUI stands for Graphical User Interface] menus. Data analyses which are done interactively, cannot be made reproducible or are very difficult to be made reproducible^[We shall see later a weaker form of reproducibility which can be postulated for such analyses].
 
 Most statistical computing systems also contain domain specific programming languages. This means that scripts or programs which correspond to sequences of statements that are collected in a file^[which are called the script or the program] are executed in the statistical computing system. The results produced by the data-analysis program must  be collected in a result-file from which it is clear what the name of the program is and when the program was run to produce the given results^[more detailed information such as the version of the statistical computing system, any additional software needed, the operating system and the name of the machine can be helpful and are therefore desirable to be included in a result file]. 
@@ -122,27 +122,25 @@ In general input data are too big to be included in a version control system. Fu
 Using all this information that characterizes a given data analysis, we are able to reproduce a certain analysis at any given point in time. This is particulary useful if a problem is found in a given data analysis. Being able to reproduce a certain data analysis, it is much easier to search for the causes of the observed problem.
 
 
-# Techniques And Tools For Reproducible Data Analysis^[To Be Completed]
+# Techniques And Tools For Reproducible Data Analysis
 ## Templates
 In the previous section, the required information to be included in a data analysis result file was listed. Because each program must write this information into the resultfile and this information is more or less constant, the use of prepared program templates can be very helpful. The template makes sure that the required information is automatically written to the result file. Most programs used for data analyses are written in Bash, Fortran, C/C++, Python or R. For each of these languages templates will be provided that satisfy the described requirement that make any given data analysis reproducible. 
 
 
 ## Literate Programming
-As mentioned above, `literate programming` is a paradigm developed by [@Knuth1984]. Literate programming mixes programming logic and explaining text. All information, i.e., program code and the explanatory text is contained in a single source file. Such a source file can be translated into a readable document or compilable or executable code can be extracted from the source file. Quite a number of literate programming systems exist. 
+As mentioned in section \@ref(ensurerepro), `literate programming` is a paradigm developed by [@Knuth1984]. Literate programming mixes programming logic and explaining text. All information, i.e., program code and the explanatory text is contained in a single source file. Such a source file can be translated into a readable document or compilable or executable code can be extracted from the source file. Quite a number of literate programming systems exist. For R and LaTeX there is `Sweave` and for R and Markdown there is `rmarkdown` and `knitr`. For Python and Julia there are IPython notebooks. 
 
-```
-continue here.
-```
+Combining code and text together with results allows to create reproducible data analysis reports very easily. 
 
 
 ## Version Control
+Programs change over time. In order to be able to reproduce any results in the post-analysis time period, it is important to be able to go back or to retrieve the version of the program as it existed at the time-point of the analysis. Changes to programming sources can be recorded with version control (VC) systems^[Examples of VC systems are CVS, SVN and git.]. The usage of a VC system always starts by creating or initializing a repository. Then the material that is to be administered with the VC system must be imported into the repository. As soon as changes are applied to the sources they have to be committed to the repository. Any collaborator that is also interested in working on the same source, has to synchronize her or his local copy with the newer version on the repository. Older versions of the source code can be retrieved very easily using the functionality provided by the VC system.  
+
+Due to the way how a VC system works, the source code has to be in text files with an open format. Only when the sources are organized in an open format, then VC system can track and record changes reliably. Files in binary and or closed formats (such as .xlsx, ...) are very difficult to be administered in a VC system.
 
 
 ## Docker Containers for Reproducible Research
-
-
-## R and Rstudio
-
+[Docker](https://www.docker.com) is a tool to easily deploy and run applications by using containers. Containers make it easy for developers to package the required parts such as libraries and other dependencies for any given application. 
 
 
 # Appendix
@@ -158,13 +156,10 @@ A data analysis is _reproducible_ if a data analyst which is not the same person
 This other person that tries to reproduce any given data analysis from the above definition of reproducibility might also be future "you". In that case reproducibility yields some added benefit for the data analyst her- or himself.
 
 
-
 @Stevens2017 gives a distinction between reproducibility and replication.
 
 
-
-
-# Further Resources^[To Be Completed]
+# Further Resources
 This chapter mentions a few resources concerning the concept of reproducibility
 
 ## Scientific Research
@@ -175,7 +170,7 @@ The term _reproducibility crisis_ or replication crisis has its own [Wikipedia e
 
 
 ## Reproducibility and Software
-The whole process shown in Figrue \ref{fig:design_routine} is completely software-driven. Hence questions related to QA of the whole process do also relate to issues of QA in software-design. [@BF2004] (Chapter 10) is one of the many references on software quality. One aspect that appears to be relevant in our context is the software quality aspect that is related to correctness of a software program. The term correctnes here is defined as "the degree to which a software product meets established requirements"^[Often we do not have explicit requirements allowing for a correctness evaluation. In most cases, implicit requirements can be used to get a correctness estimate].  
+The whole process shown in Figrue \@ref(fig:reprodef) is completely software-driven. Hence questions related to QA of the whole process do also relate to issues of QA in software-design. [@BF2004] (Chapter 10) is one of the many references on software quality. One aspect that appears to be relevant in our context is the software quality aspect that is related to correctness of a software program. The term correctnes here is defined as "the degree to which a software product meets established requirements"^[Often we do not have explicit requirements allowing for a correctness evaluation. In most cases, implicit requirements can be used to get a correctness estimate].  
 
 
 ```{r bib, include=FALSE}
