@@ -1,0 +1,26 @@
+---
+title: "Further Steps After First Routine Run"
+date: "2018-10-24"
+author: "Peter von Rohr"
+output: html_notebook
+---
+
+## Disclaimer
+This document gives an overview of the first routine run of predicting breeding values for milk. The steps are done under the guidance of USU and with the descriptions available in confluence. In what follows the routine process is described and then we try to derive some measures and actions that should follow.
+
+
+## Description of Routine Evaluation
+The first step consists of archiving the old results. This is done with specialiced shell scripts. 
+
+
+
+## Derived Measures and Actions
+Based on a discussion with Madeleine, Beat and USU, the following could be implemented in a first automation round
+
+* run archiving scripts before anything else is done. Challenge here is to check whether archiving has been done before
+* create necessary directory structure for the new analysis
+* data gathering after DB-export, i.e. for a given evaluation
+* preparing data, i.e. plausibility and if necessary merging data from different sources
+
+
+
