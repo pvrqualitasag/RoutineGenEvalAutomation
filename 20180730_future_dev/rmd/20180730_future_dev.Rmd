@@ -2,7 +2,7 @@
 title: "Plan of Future Development"
 author: "Peter von Rohr"
 date: "7/30/2018"
-output: html_document
+output: html_notebook
 ---
 
 ```{r setup, include=FALSE}
@@ -16,8 +16,13 @@ This document contains the plan for the future development in the project `QAAM`
 ## Current Status
 As an example of the current status of the analysis routines, we are looking at the confluence page under https://qualitasag.atlassian.net/wiki/spaces/ZWS/pages/192970777/Anleitung+ZWS+Schlachtmerkmale. On this page the routine for the data analysis is described in a step-by-step procedure in the section entitled 'Ablauf' on the above mentioned confluence page. 
 
+## Summary of different steps
+The first step consists of an archiving step. The archiving step has several sub-steps which will be listed below. 
 
-### Characterizing the steps
+1. Archiving evaluation directory EVAL_DIR. This is done useing the shell script `/qualstorzws01/data_zws/stdfmtprogs/prog/archivierung.sh`. The input for this step is `EVAL_DIR` and the target directory `/qualstorzws01/data_archiv/zws/YYMM` where `YYMM` stands for the abreviation of the previous routine run.
+
+
+## Characterizing the steps
 In this subsection, we try to group the different steps according to their properties. 
 
 * A first category contains the steps that are executed manually by entering statements at the command-line prompt (Steps 1, 2, 7 and 8). This category includes the manual editing steps of input files or scripts. When following the steps that are given on the instructions page and by comparing the results to already existing versions of the input files or the scripts. These steps are already reproducible, assuming that when the resulting files are changed, these changes are also implemented in the instructions. The negative points of manually changing certain parts of the routine analysis are 
